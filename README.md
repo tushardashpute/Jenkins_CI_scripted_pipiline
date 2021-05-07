@@ -8,10 +8,10 @@ Jenkins_CI_scripted_pipiline
      stage("SCM"){
         git branch: 'main', url: 'https://github.com/cloudtechmasters/springboot-docker-assignment-without-database.git'
      }
-     // If we want we can add repo url and branch name as parameterized as well
+    ** // If we want we can add repo url and branch name as parameterized as well
      //stage("SCM"){
      //   git branch: "${params.Branch_Name}", url: "${params.GIT_URL}"
-     //}
+     //}**
      stage("Build Artifact") {
          sh "mvn clean package"
      }
@@ -51,4 +51,4 @@ Jenkins_CI_scripted_pipiline
             -Durl=$HOST/repository/maven-releases/', returnStdout: true)
 	    }
 	}
-}
+	}
