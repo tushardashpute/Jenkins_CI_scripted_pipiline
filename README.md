@@ -1,11 +1,14 @@
 # Jenkins_CI_scripted_pipiline
 Jenkins_CI_scripted_pipiline
 ############################################
-node{
+	
+	
+	
+	node{
      stage("SCM"){
         git branch: 'main', url: 'https://github.com/cloudtechmasters/springboot-docker-assignment-without-database.git'
      }
-     //Here if we want we can use parameterized repo url and branch name as well
+     // If we want we can add repo url and branch name as parameterized as well
      //stage("SCM"){
      //   git branch: "${params.Branch_Name}", url: "${params.GIT_URL}"
      //}
@@ -13,11 +16,9 @@ node{
          sh "mvn clean package"
      }
 	 stage("Sonar Analysis") {
-	    
 	    def HOST= "http://34.204.204.27:9000"
 	    def Project= "test"
 	    sonar_token = "422207d3c02f5754b6210a8aa1b2d573673aa7a3"
-		
 		    sh "mvn test"     
             sh "mvn sonar:sonar -Dsonar.login=$sonar_token -Dsonar.host.url=$HOST -Dsonar.projectKey=$Project"
             sh "sleep 5"
